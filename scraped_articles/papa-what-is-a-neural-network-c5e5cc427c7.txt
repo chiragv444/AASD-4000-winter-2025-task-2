@@ -1,25 +1,5 @@
 url: https://medium.com/@subashgandyer/papa-what-is-a-neural-network-c5e5cc427c7
 
-Sign up
-
-Sign in
-
-Sign up
-
-Sign in
-
-Subash Gandyer
-
-Follow
-
---
-
-1
-
-Listen
-
-Share
-
 It was a cozy Sunday afternoon in the month of February 2018. I just finished my huge customary Sunday lunch spread with family and resting along. Everyone in the family was taking a quick nap for a pre-planned evening outing. Well not everyone, actually.
 
 My 4-year-old angel came running to me, asked me to play with her for a while. As I was lazy and not in a position to move after the big spread, I evaded the chance to play with her by telling her “Papa’s got some work baby. Got to code some stuff.” I thought that would be the end of the conversation. No! It wasn’t. As my daughter was very inquisitive, she asked me “Papa, what stuff?” I said, “I need to code something for my work.” She didn’t leave. She again asked, “What is code something?” I wanted to end this conversation, as I was half past asleep. “Just some stuff baby. You wouldn’t understand. Way beyond your age.” Tanishi never takes NO for an answer. “Papa, tell me what stuff means and something means.” Cannot help evade a cute curious face, I said, “I am working on Neural Network.” Before I finish the statement, “Papa, What is a Meural Metark?” I gave up my stubbornness of avoiding her. With a smile, I said slowly, “Its Neu — ral Net — work”
@@ -143,32 +123,4 @@ Tanishi: Yes papa.
 Me: Brilliant job baby. Come, let’s go, and get some ice creams for my lovely angel.
 
 Phew! That was a challenging and a learning experience for me as well. That was how I ended my Sunday afternoon with my brilliant daughter who can teach other kids what a Meural Metark is. And I hope she will not come to me running asking “Papa, what is Meural Metark?” again. And I have a strong feeling; she would ask me another stunning question sooner or later. Fingers crossed and I am prepared to take up the challenges coming my way in the future.
-
---
-
---
-
-1
-
-CS Teacher to ...
-
-Help
-
-Status
-
-About
-
-Careers
-
-Press
-
-Blog
-
-Privacy
-
-Terms
-
-Text to speech
-
-Teams
 

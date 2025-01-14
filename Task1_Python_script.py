@@ -4,71 +4,75 @@
 import os
 import requests
 import re
-# Code here - Import BeautifulSoup library
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup  # Code here - Import BeautifulSoup library
+
 # Code ends here
 
-# function to get the html source text of the medium article
+# Function to get the HTML source text of the Medium article
 def get_page():
-	global url
-	
-	# Code here - Ask the user to input "Enter url of a medium article: " and collect it in url
-	web_url = input("This is where you type in your input request: ")
-	print("web_url", web_url)
-	url = web_url
-	# Code ends here
-	
-	# handling possible error
-	if not re.match(r'https?://medium.com/',url):
-		print('Please enter a valid website, or make sure it is a medium article')
-		sys.exit(1)
+    global url
 
-	# Code here - Call get method in requests object, pass url and collect it in res
-	res = requests.get(url)
+    # Code here - Ask the user to input "Enter url of a medium article: " and collect it in url
+    url = input("Enter url of a medium article: ").strip()
+    # Code ends here
 
-	# Code ends here
+    # Handling possible error
+    if not re.match(r'https?://medium.com/', url):
+        print('Please enter a valid website, or make sure it is a medium article')
+        sys.exit(1)
 
-	res.raise_for_status()
-	soup = BeautifulSoup(res.text, 'html.parser')
-	return soup
+    # Code here - Call get method in requests object, pass url and collect it in res
+    res = requests.get(url)
+    # Code ends here
 
-# function to remove all the html tags and replace some with specific strings
+    res.raise_for_status()
+    soup = BeautifulSoup(res.text, 'html.parser')
+    return soup
+
+# Function to remove all the HTML tags and replace some with specific strings
 def clean(text):
-    rep = {"<br>": "\n", "<br/>": "\n", "<li>":  "\n"}
+    rep = {"<br>": "\n", "<br/>": "\n", "<li>": "\n"}
     rep = dict((re.escape(k), v) for k, v in rep.items()) 
     pattern = re.compile("|".join(rep.keys()))
     text = pattern.sub(lambda m: rep[re.escape(m.group(0))], text)
     text = re.sub(r'\<(.*?)\>', '', text)
     return text
 
-
+# Function to collect the text content from the parsed HTML
 def collect_text(soup):
-	text = f'url: {url}\n\n'
-	para_text = soup.find_all('p')
-	print(f"paragraphs text = \n {para_text}")
-	for para in para_text:
-		text += f"{para.text}\n\n"
-	return text
+    text = f'url: {url}\n\n'
+    
+    # Find the main article body based on class names or other unique attributes
+    article_body = soup.find_all('p', class_="pw-post-body-paragraph")
+    
+    if not article_body:
+        print("Could not find article content. Ensure the script is scraping the right section.")
+        return ""
 
-# function to save file in the current directory
+    # Extract text from each paragraph
+    for para in article_body:
+        text += f"{para.text.strip()}\n\n"
+
+    return text
+
+# Function to save the file in the current directory
 def save_file(text):
-	if not os.path.exists('./scraped_articles'):
-		os.mkdir('./scraped_articles')
-	name = url.split("/")[-1]
-	print(name)
-	fname = f'scraped_articles/{name}.txt'
-	
-	# Code here - write a file using with (2 lines)
-	f = open(fname, "w")
-	f.write(text)
-	f.close()
-	# Code ends here
+    if not os.path.exists('./scraped_articles'):
+        os.mkdir('./scraped_articles')
+    name = url.split("/")[-1]
+    print(name)
+    fname = f'scraped_articles/{name}.txt'
 
-	print(f'File saved in directory {fname}')
+    # Code here - write a file using with (2 lines)
+    with open(fname, 'w', encoding='utf-8') as file:
+        file.write(text)
+    # Code ends here
+
+    print(f'File saved in directory {fname}')
 
 
 if __name__ == '__main__':
-	text = collect_text(get_page())
-	save_file(text)
-	# Instructions to Run this python code
-	# Give url as https://medium.com/@subashgandyer/papa-what-is-a-neural-network-c5e5cc427c7
+    text = collect_text(get_page())
+    save_file(text)
+    # Instructions to Run this python code
+    # Give url as https://medium.com/@subashgandyer/papa-what-is-a-neural-network-c5e5cc427c7
